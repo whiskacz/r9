@@ -1,17 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom/client'
+import Title from './componets/Title';
+import Ranger from './componets/Ranger';
+import Circle from './componets/Circle';
+import './css/index.css'
+
+function R9App() {
+  
+  const [rangerValue, setRangerValue] = useState(0)
+
+  const handleValueChange = (e) => {
+    setRangerValue(e.target.value)
+  }
+    let bgColor; 
+    if(rangerValue > 0)
+    {bgColor = "red"}
+    if(rangerValue > 50)
+    {bgColor = "blue"}
+  
+  
+    return (
+    <div className='wrapper'>
+        <Title value={rangerValue} />
+        <Ranger value={rangerValue} handleValueChange={handleValueChange}/>
+        <Circle value={rangerValue} bgColor={bgColor} />
+    </div>
+    
+  )
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(<R9App />)
